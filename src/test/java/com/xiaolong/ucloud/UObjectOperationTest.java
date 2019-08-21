@@ -22,7 +22,7 @@ public class UObjectOperationTest
 {
     static final String LOCAL_TEST_FILE = "C:\\Users\\lanxiaolong\\Desktop\\elk.txt";
     private UFile ufile;
-    static final String TEST_BUCKET = "grp01";
+    static final String TEST_BUCKET = "";
     static final String TEST_KEY = "elk.txt";
     String publicKey = "";
     String privateKey = "";
@@ -52,19 +52,8 @@ public class UObjectOperationTest
             ufile.deleteObject(TEST_BUCKET, TEST_KEY);
         }*/
         File testFile = new File(LOCAL_TEST_FILE);
-        //UResponse newObjectMetadata = ufile.putObject(TEST_BUCKET, TEST_KEY, testFile, "image/png");
         UResponse response = ufile.putObject(TEST_BUCKET, testFile.getName(), testFile, "text/plain");
         System.out.println(response.getRetCode());
-
-        /*UObjectMetadata existObjectMetadatae = ufile.getObjectMetadata(TEST_BUCKET, TEST_KEY);
-        assertEquals(existObjectMetadatae.getETag(), newObjectMetadata.getETag());
-        assertEquals(testFile.length(), existObjectMetadatae.getContentLength());
-        assertEquals("jpeg", existObjectMetadatae.getContentType());*/
-
-
-        /*existObjectMetadatae = ufile.getObject(TEST_BUCKET, TEST_KEY, new File("/Users/kimzhang/Downloads/temp.pdf"));
-        String deleteObjectKey = ufile.deleteObject(TEST_BUCKET, TEST_KEY);
-        assertEquals(deleteObjectKey, TEST_KEY);*/
     }
 
     @Test(/*expected = Test.None.class*/)
@@ -74,34 +63,7 @@ public class UObjectOperationTest
         if (ufile.doesObjectExist(TEST_BUCKET, TEST_KEY)) {
             ufile.deleteObject(TEST_BUCKET, TEST_KEY);
         }
-        /*for (int i = 0; i < 16; i++) {
-            String testKey = String.format("test2/object-%02d", i);
-            File testFile = new File(LOCAL_TEST_FILE);
-            ufile.putObject(TEST_BUCKET, testKey, testFile);
-        }
 
-        UObjectListing objectListing = ufile.listObjects(TEST_BUCKET, "test2", 10);
-        assertEquals(objectListing.getObjectSummaries().size(), 10);
-        for (int i = 0; i < 10; i++) {
-            String testKey = String.format("test2/object-%02d", i);
-            assertEquals(objectListing.getObjectSummaries().get(i).getObjectKey(), testKey);
-        }
-
-        UObjectListing nextObjectListing = ufile.listNextBatchOfObjects(objectListing);
-        assertEquals(nextObjectListing.getObjectSummaries().size(), 6);
-        for (int i = 0; i < 6; i++) {
-            String testKey = String.format("test2/object-%02d", 10 + i);
-            assertEquals(nextObjectListing.getObjectSummaries().get(i).getObjectKey(), testKey);
-        }
-
-        nextObjectListing = ufile.listNextBatchOfObjects(nextObjectListing);
-        assertEquals(nextObjectListing, null);
-
-        for (int i = 0; i < 16; i++) {
-            String testKey = String.format("test2/object-%02d", i);
-            String deleteObjectKey = ufile.deleteObject(TEST_BUCKET, testKey);
-            assertEquals(deleteObjectKey, testKey);
-        }*/
     }
 
     /**
@@ -136,13 +98,6 @@ public class UObjectOperationTest
         UResponse newObjectMetadata = ufile.putObject(TEST_BUCKET, TEST_KEY, testFile, "image/png");
 
         UResponse existObjectMetadatae = ufile.getObjectMetadata(TEST_BUCKET, TEST_KEY);
-        /*assertEquals(existObjectMetadatae.getETag(), newObjectMetadata.getETag());
-        assertEquals(testFile.length(), existObjectMetadatae.getContentLength());
-        assertEquals("image/png", existObjectMetadatae.getContentType());*/
-
-//        existObjectMetadatae = ufile.getObject(TEST_BUCKET, TEST_KEY, new File("/Users/kimzhang/Downloads/temp.pdf"));
-//        String deleteObjectKey = ufile.deleteObject(TEST_BUCKET, TEST_KEY);
-//        assertEquals(deleteObjectKey, TEST_KEY);
     }
 
 //
